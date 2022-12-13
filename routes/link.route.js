@@ -4,6 +4,7 @@ import {
     getLink,
     getLinks,
     removeLink,
+    updateLink,
 } from "../controllers/link.controller.js";
 import { requireToken } from "../middlewares/requireToken.js";
 import {
@@ -15,9 +16,17 @@ const router = Router();
 
 router.get("/", requireToken, getLinks);
 
-router.get("/:id", requireToken, getLink);
+router.get("/:nanoLink", getLink);
 
 router.post("/", requireToken, bodyLinkValidator, createLink);
+
+router.patch(
+    "/:id",
+    requireToken,
+    paramLinkValidator,
+    bodyLinkValidator,
+    updateLink
+);
 
 router.delete("/:id", requireToken, paramLinkValidator, removeLink);
 
