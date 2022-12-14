@@ -20,6 +20,7 @@ app.use(
             }
             return callback("Error de CORS: dominio no autorizado");
         },
+        credentials: true,
     })
 );
 app.use(express.json());
